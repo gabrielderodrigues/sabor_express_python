@@ -1,9 +1,9 @@
 import os
 
-restaurants = []
+restaurants = ['Pizza', 'Sushi', 'Hamburguer']
 
 def show_logo():
-    print(""""
+    print("""
 ██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████
 █░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░██████░░░░░░░░░░░░░░█░░░░░░░░██░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█
 █░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░██████░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀░░██░░▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
@@ -26,23 +26,36 @@ def show_options():
     print('4. Sair\n')
     
 def exit_app():
-    os.system('cls')
-    print('Até mais!')
-    exit()
+    show_subtitle('Até mais.')
+    
+def return_to_menu():
+    input('\nDigite uma tecla para voltar para o menu...')
+    main()
     
 def invalid_option():
     print('Opção inválida\n')
-    print('Digite uma tecla para voltar para o menu principal.\n')
-    main()
+    return_to_menu()
+    
+def show_subtitle(subtitle):
+    os.system('cls')
+    print(subtitle)
+    print()
     
 def create_new_restaurant():
-    os.system('cls')
-    print('Cadastrar restaurante\n')
+    show_subtitle('Cadastrar restaurante')
+    
     name_of_restaurant = input('Digite o nome do restaurante que deseja cadastrar: ')
     restaurants.append(name_of_restaurant)
     print(f'Restaurante {name_of_restaurant} cadastrado com sucesso!\n')
-    input('Digite uma tecla para voltar para o menu principal.\n')
-    main()
+    return_to_menu()
+    
+def show_restaurants():
+    show_subtitle('Listar restaurantes')
+    
+    for restaurant in restaurants:
+        print("- ", restaurant)
+        
+    return_to_menu()
 
 def choose_option():
     try:
@@ -55,7 +68,7 @@ def choose_option():
         case 1:
             create_new_restaurant()
         case 2:
-            print('Listar restaurante')
+            show_restaurants()
         case 3:
             print('Ativar restaurante')
         case 4:
