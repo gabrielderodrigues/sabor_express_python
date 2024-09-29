@@ -10,9 +10,9 @@ def show_logo():
     print("== Sabor Express ==")
 
 def show_options():    
-    print('1. Cadastrar restaurantes')
-    print('2. Listar restaurantes')
-    print('3. Alternar estado do restaurante')
+    print('1. Cadastrar restaurante')
+    print('2. Listar restaurante')
+    print('3. Ativar restaurante')
     print('4. Sair\n')
     
 def exit_app():
@@ -28,10 +28,7 @@ def invalid_option():
     
 def show_subtitle(subtitle):
     os.system('cls')
-    line = '*' * (len(subtitle))
-    print(line)
     print(subtitle)
-    print(line)
     print()
     
 def create_new_restaurant():
@@ -47,7 +44,6 @@ def create_new_restaurant():
 def show_restaurants():
     show_subtitle('Listar restaurantes')
     
-    print(f'{"Nome do Restaurante".ljust(22)} | {"Categoria".ljust(20)} | {"Estado"}')
     for restaurant in restaurants:
         restaurant_name = restaurant['name']
         restaurant_category = restaurant['categoria']
@@ -57,7 +53,7 @@ def show_restaurants():
         else:
             restaurant_active = 'Inativo'
             
-        print(f"- {restaurant_name.ljust(20)} | {restaurant_category.ljust(20)} | {restaurant_active}")
+        print(f"- {restaurant_name} | {restaurant_category} | {restaurant_active}")
         
     return_to_menu()
     
