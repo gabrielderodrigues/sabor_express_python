@@ -35,7 +35,9 @@ def create_new_restaurant():
     show_subtitle('Cadastrar restaurante')
     
     name_of_restaurant = input('Digite o nome do restaurante que deseja cadastrar: ')
-    restaurants.append(name_of_restaurant)
+    category_of_restaurant = input('Digite a categoria do restaurante: ')
+    restaurants.append({'name': name_of_restaurant, 'categoria': category_of_restaurant, 'ativo': False})
+    
     print(f'Restaurante {name_of_restaurant} cadastrado com sucesso!\n')
     return_to_menu()
     
@@ -54,6 +56,26 @@ def show_restaurants():
         print(f"- {restaurant_name} | {restaurant_category} | {restaurant_active}")
         
     return_to_menu()
+    
+def change_restaurant_status():
+    show_subtitle('Alternando estado do restaurante...')
+    
+    restaurant_name = input('Digite o nome do restaurante que deseja ativar/inativar: ')
+    
+    restaurant_found = False
+    
+    for restaurant in restaurants:
+        if (restaurant['name'] == restaurant_name):
+            restaurant_found = True
+            restaurant['ativo'] = not restaurant['ativo']
+            message = f'O restaurante {restaurant_name} foi ativado com sucesso!' if restaurant['ativo'] else f'O restaurante {restaurant_name} foi inativado com sucesso!'
+            print(message)
+            break
+    
+    if not restaurant_found:
+        print('Restaurante não encontrado.')
+    
+    return_to_menu()
 
 def choose_option():
     try:
@@ -68,7 +90,7 @@ def choose_option():
         case 2:
             show_restaurants()
         case 3:
-            print('Ativar restaurante')
+            change_restaurant_status()
         case 4:
             exit_app()
         case _:
