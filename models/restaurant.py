@@ -19,8 +19,13 @@ class Restaurant:
     def active(self):
         return '☑' if self._active else '☐'
     
+    def alternate_state(self):
+        self._active = not self._active
+    
 restaurant_praca = Restaurant('Praça São Lourenço', 'Brasileira')
+restaurant_praca.alternate_state()
 restaurant_madero = Restaurant('Madero', 'Hamburgueria')
 restaurant_montana = Restaurant('Montana', 'Churrascaria')
+restaurant_montana.alternate_state()
 
 Restaurant.show_restaurants()
