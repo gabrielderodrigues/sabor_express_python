@@ -1,9 +1,11 @@
 import os
 
+from models.restaurant import Restaurant
+
 restaurants = [
-    {'name':'Pizza', 'categoria':'Japonesa', 'ativo': False}, 
-    {'name':'Burguer', 'categoria':'Fast Food', 'ativo': True}, 
-    {'name':'Sushi', 'categoria':'Japonesa', 'ativo': False}
+    Restaurant('Praça São Lourenço', 'Brasileira'),
+    Restaurant('Madero', 'Hamburgueria'),
+    Restaurant('Montana', 'Churrascaria')
 ]
 
 def show_logo():
@@ -39,7 +41,10 @@ def create_new_restaurant():
     
     name_of_restaurant = input('Digite o nome do restaurante que deseja cadastrar: ')
     category_of_restaurant = input('Digite a categoria do restaurante: ')
-    restaurants.append({'name': name_of_restaurant, 'categoria': category_of_restaurant, 'ativo': False})
+    
+    restaurants.append(
+        Restaurant(name_of_restaurant, category_of_restaurant)
+    )
     
     print(f'Restaurante {name_of_restaurant} cadastrado com sucesso!\n')
     return_to_menu()
@@ -47,17 +52,7 @@ def create_new_restaurant():
 def show_restaurants():
     show_subtitle('Listar restaurantes')
     
-    print(f'{"Nome do Restaurante".ljust(22)} | {"Categoria".ljust(20)} | {"Estado"}')
-    for restaurant in restaurants:
-        restaurant_name = restaurant['name']
-        restaurant_category = restaurant['categoria']
-        
-        if (restaurant['ativo']):
-            restaurant_active = 'Ativo'
-        else:
-            restaurant_active = 'Inativo'
-            
-        print(f"- {restaurant_name.ljust(20)} | {restaurant_category.ljust(20)} | {restaurant_active}")
+    Restaurant.show_restaurants()
         
     return_to_menu()
     
@@ -69,10 +64,10 @@ def change_restaurant_status():
     restaurant_found = False
     
     for restaurant in restaurants:
-        if (restaurant['name'] == restaurant_name):
+        if restaurant._name == restaurant_name:
             restaurant_found = True
-            restaurant['ativo'] = not restaurant['ativo']
-            message = f'O restaurante {restaurant_name} foi ativado com sucesso!' if restaurant['ativo'] else f'O restaurante {restaurant_name} foi inativado com sucesso!'
+            restaurant.alternate_state()
+            message = f'O restaurante {restaurant_name} foi ativado com sucesso!' if restaurant._active else f'O restaurante {restaurant_name} foi inativado com sucesso!'
             print(message)
             break
     
