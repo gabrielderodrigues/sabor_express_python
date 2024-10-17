@@ -2,11 +2,15 @@ import os
 
 from models.restaurant import Restaurant
 
-restaurants = [
-    Restaurant('Praça São Lourenço', 'Brasileira'),
-    Restaurant('Madero', 'Hamburgueria'),
-    Restaurant('Montana', 'Churrascaria')
-]
+restaurants = []
+
+restaurant_praca = Restaurant('Praça São Lourenço', 'Brasileira')
+restaurant_madero = Restaurant('Madero', 'Hamburgueria')
+restaurant_montana = Restaurant('Montana', 'Churrascaria')
+
+restaurants.append(restaurant_praca)
+restaurants.append(restaurant_madero)
+restaurants.append(restaurant_montana)
 
 def show_logo():
     print("== Sabor Express ==")
