@@ -5,6 +5,9 @@ from models.restaurant import Restaurant
 restaurants = []
 
 restaurant_praca = Restaurant('Praça São Lourenço', 'Brasileira')
+restaurant_praca.add_item_menu('Coca-Cola', 5.00, 300)
+restaurant_praca.add_item_menu('Picanha', 50.00, 'Picanha argentina')
+
 restaurant_madero = Restaurant('Madero', 'Hamburgueria')
 restaurant_montana = Restaurant('Montana', 'Churrascaria')
 
