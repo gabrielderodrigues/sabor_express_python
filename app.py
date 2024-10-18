@@ -9,6 +9,7 @@ restaurants = []
 restaurant_praca = Restaurant('Praça São Lourenço', 'Brasileira')
 drink_coke = Drink('Coca-cola', 5.0, 300)
 dish = Dish('Feijoada', 50.0, 'Feijoada')
+dish.apply_discount()
 restaurant_praca.add_item_menu(drink_coke)
 restaurant_praca.add_item_menu(dish)
 
