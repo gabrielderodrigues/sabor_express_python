@@ -1,12 +1,16 @@
 import os
 
+from models.menu.dish import Dish
+from models.menu.drink import Drink
 from models.restaurant import Restaurant
 
 restaurants = []
 
 restaurant_praca = Restaurant('Praça São Lourenço', 'Brasileira')
-restaurant_praca.add_item_menu('Coca-Cola', 5.00, 300)
-restaurant_praca.add_item_menu('Picanha', 50.00, 'Picanha argentina')
+drink_coke = Drink('Coca-cola', 5.0, 300)
+dish = Dish('Feijoada', 50.0, 'Feijoada')
+restaurant_praca.add_item_menu(drink_coke)
+restaurant_praca.add_item_menu(dish)
 
 restaurant_madero = Restaurant('Madero', 'Hamburgueria')
 restaurant_montana = Restaurant('Montana', 'Churrascaria')
@@ -61,6 +65,22 @@ def show_restaurants():
     
     Restaurant.show_restaurants()
         
+    show_restaurant_menu()
+    
+def show_restaurant_menu():    
+    restaurant_name = input('Digite o nome do restaurante que deseja visualizar o cardápio: ')
+    
+    restaurant_found = False
+    
+    for restaurant in restaurants:
+        if restaurant._name == restaurant_name:
+            restaurant_found = True
+            show_subtitle(f'Cardápio do restaurante {restaurant_name}')
+            restaurant.show_menu()
+    
+    if not restaurant_found:
+        print('Restaurante não encontrado.')
+    
     return_to_menu()
     
 def change_restaurant_status():

@@ -44,3 +44,14 @@ class Restaurant:
     def add_item_menu(self, item):
         if isinstance(item, ItemMenu):
             self._menu.append(item)
+            
+    def show_menu(self):
+        if not self._menu:
+            print(f'😓 Parece que o cardápio do restaurante {self._name} está vazio...')
+        else:
+            print(f'Cardapio do restaurante {self._name}')
+            for i, item in enumerate(self._menu):
+                if hasattr(item, 'description'):
+                    print(f'{i + 1} - {item._name} | Preço: R$ {item._price:.2f} | Descrição: {item.description}')
+                else:
+                    print(f'{i + 1} - {item._name} | Preço: R$ {item._price:.2f} | Tamanho: {item.length}ml')
