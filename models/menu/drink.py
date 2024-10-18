@@ -6,4 +6,4 @@ class Drink(ItemMenu):
         self.length = length
         
     def apply_discount(self):
-        self._price -= (self._price * 0.05)
+        self._price -= (self._price * 0.08)
